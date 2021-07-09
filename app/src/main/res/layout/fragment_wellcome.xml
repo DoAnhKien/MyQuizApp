@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00FFAE"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".ui.fragment.WellcomeFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Chào mừng bạn tới game trắc nghiệm"
+        android:textColor="#FEFEFF"
+        android:textSize="25sp" />
+
+    <Button
+
+        android:id="@+id/btnPhayGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/radius_btn_add_cus"
+        android:text="Chơi game"
+        android:textColor="#FEFEFF"
+        android:textSize="40sp" />
+
+    <Button
+        android:id="@+id/btnShowListResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/radius_btn_add_cus"
+        android:gravity="center"
+        android:text="Xem kết quả"
+        android:textColor="#FEFEFF"
+        android:textSize="40sp" />
+
+</LinearLayout>

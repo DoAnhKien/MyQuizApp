@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/wellcomeFragment">
+    <fragment
+        android:id="@+id/wellcomeFragment"
+        android:name="com.example.quizapp.ui.fragment.WellcomeFragment"
+        android:label="WellCome"
+        tools:layout="@layout/fragment_wellcome">
+        <action
+            android:id="@+id/action_wellcomeFragment_to_playGameFragment"
+            app:destination="@id/playGameFragment" />
+        <action
+            android:id="@+id/action_wellcomeFragment_to_showScoreFragment2"
+            app:destination="@id/showScoreFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/playGameFragment"
+        android:name="com.example.quizapp.ui.fragment.PlayGameFragment"
+        android:label="PlayGame"
+        tools:layout="@layout/fragment_play_game" />
+    <fragment
+        android:id="@+id/showScoreFragment"
+        android:name="com.example.quizapp.ui.fragment.ShowScoreFragment"
+        android:label="ShowScore"
+        tools:layout="@layout/fragment_show_score" />
+</navigation>
