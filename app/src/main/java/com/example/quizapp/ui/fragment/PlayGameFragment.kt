@@ -38,9 +38,17 @@ class PlayGameFragment : Fragment(R.layout.fragment_play_game), View.OnClickList
         observeStatus()
         setOnClickListener()
         checkTheAnswer()
+        onRefreshData()
     }
 
     private fun onRefreshData() {
+        binding?.refresh?.setOnRefreshListener {
+            questionViewModel.resetData()
+            binding?.tvCurrentQuestion?.text = "Question 0"
+            binding?.tvScore?.text = "Score 0"
+            setDataForQuestion()
+            binding?.refresh?.isRefreshing = false
+        }
 
     }
 
@@ -53,6 +61,7 @@ class PlayGameFragment : Fragment(R.layout.fragment_play_game), View.OnClickList
                 binding?.tvExplanation?.visibility = View.VISIBLE
                 Handler().postDelayed({
                     setDataForQuestion()
+                    setTheColorWhiteForAllQuestion()
                 }, Const.DURATION)
                 setEnableClick()
                 Log.d(TAG, "checkTheCorrectAnswer: A")
@@ -183,6 +192,7 @@ class PlayGameFragment : Fragment(R.layout.fragment_play_game), View.OnClickList
             binding?.tvExplanation?.text = question.explanation
             binding?.tvExplanation?.visibility = View.INVISIBLE
             setTheColorWhiteForAllQuestion()
+            setEnableClick()
         })
     }
 
@@ -200,7 +210,7 @@ class PlayGameFragment : Fragment(R.layout.fragment_play_game), View.OnClickList
         binding?.btnQuestionA?.setTextColor(Color.WHITE)
         binding?.btnQuestionB?.setTextColor(Color.WHITE)
         binding?.btnQuestionC?.setTextColor(Color.WHITE)
-        binding?.btnQuestionC?.setTextColor(Color.WHITE)
+        binding?.btnQuestionD?.setTextColor(Color.WHITE)
     }
 
     private fun setEnableClick(
@@ -259,6 +269,7 @@ class PlayGameFragment : Fragment(R.layout.fragment_play_game), View.OnClickList
             )
         })
     }
+
 
     override fun onClick(v: View?) {
         when (v) {

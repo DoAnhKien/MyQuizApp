@@ -1,9 +1,5 @@
 package com.example.quizapp.viewmodel
 
-import android.graphics.Color
-import android.util.Log
-import android.widget.Button
-import android.widget.TextView
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -30,29 +26,23 @@ class QuestionViewModel @ViewModelInject constructor(
     private val questionEventChannel = Channel<QuestionEvent>()
     val questionEvent = questionEventChannel.receiveAsFlow()
 
-    fun insertTheQuestion(mQuestions: List<Question>) = GlobalScope.launch {
+    fun insertTheQuestion(mQuestions: List<Question>) = viewModelScope.launch {
         questionDao.insertAQuestionA(mQuestions)
     }
 
-    fun insertTheQuestion(question: Question) = GlobalScope.launch {
+    fun insertTheQuestion(question: Question) = viewModelScope.launch {
         questionDao.insertAQuestion(question)
     }
 
-    fun getMQuestion(): LiveData<List<Question>> {
-        return mQuestions
-    }
+    fun getMQuestion(): LiveData<List<Question>> = mQuestions
 
-    fun getQuestionStatus(): MutableLiveData<QuestionStatus> {
-        return questionStatus
-    }
 
-    fun getScore(): Int {
-        return score
-    }
+    fun getQuestionStatus(): MutableLiveData<QuestionStatus> = questionStatus
 
-    fun getPosition(): Int {
-        return position
-    }
+
+    fun getScore(): Int = score
+
+    fun getPosition(): Int = position
 
 
     fun checkForOptionA(
@@ -168,10 +158,8 @@ class QuestionViewModel @ViewModelInject constructor(
     fun setDataForQuestion(
         mQuestions: List<Question>,
     ): Question {
-        val currentQuestion = mQuestions[position]
-        return currentQuestion
+        return mQuestions[position]
     }
-
 
     fun resetData() = viewModelScope.launch {
         position = 0
