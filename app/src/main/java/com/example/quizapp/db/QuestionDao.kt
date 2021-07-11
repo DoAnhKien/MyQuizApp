@@ -11,6 +11,9 @@ interface QuestionDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAQuestion(question: Question)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAQuestionA(mQuestions: List<Question>)
+
     @Update
     suspend fun updateAQuestion(question: Question)
 

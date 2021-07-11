@@ -7,6 +7,8 @@ object Const {
     const val OPTION_D = 4
 
     const val EASY_DIFFICULTY = 1
-    const val MEIUM_DIFFICULTY = 2
+    const val MEDIUM_DIFFICULTY = 2
     const val HARD_DIFFICULTY = 3
+
+    const val DURATION = 4000L
 }
