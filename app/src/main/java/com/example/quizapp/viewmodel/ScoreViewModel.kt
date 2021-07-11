@@ -6,6 +6,7 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.quizapp.db.ScoreDao
 import com.example.quizapp.model.Score
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
@@ -20,17 +21,17 @@ class ScoreViewModel @ViewModelInject constructor(
 
     val mScores = scoreDao.getAllScore()
 
-    fun onScoreSWiped(score: Score) = viewModelScope.launch {
+    fun onScoreSWiped(score: Score) = viewModelScope.launch(Dispatchers.Main) {
         scoreDao.deleteAScore(score)
         scoreEventChanel.send(ScoreEvent.ShowUndoDeleteTask(score))
     }
 
-    fun insertAScore(score: Score) = viewModelScope.launch {
+    fun insertAScore(score: Score) = viewModelScope.launch(Dispatchers.Main) {
         scoreDao.insertAScore(score)
     }
 
 
-    fun undoDeleteClick(score: Score) = viewModelScope.launch {
+    fun undoDeleteClick(score: Score) = viewModelScope.launch(Dispatchers.Main) {
         scoreDao.insertAScore(score)
     }
 

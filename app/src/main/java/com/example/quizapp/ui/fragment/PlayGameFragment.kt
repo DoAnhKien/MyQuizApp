@@ -19,6 +19,8 @@ import com.example.quizapp.viewmodel.ScoreViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_play_game.*
 import kotlinx.android.synthetic.main.fragment_wellcome.*
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
@@ -294,6 +296,14 @@ class PlayGameFragment : Fragment(R.layout.fragment_play_game), View.OnClickList
                 checkTheAnswer()
             }
         }
+    }
+
+
+    override fun onDestroy() {
+        questionViewModel.getMQuestion().observe(requireActivity(), {
+            questionViewModel.checkForOptionA(it).cancel("kienda")
+        })
+        super.onDestroy()
     }
 
 
