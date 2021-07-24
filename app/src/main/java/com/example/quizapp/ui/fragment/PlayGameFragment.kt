@@ -8,6 +8,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.example.quizapp.R
 import com.example.quizapp.aenum.QuestionStatus
@@ -31,6 +33,8 @@ class PlayGameFragment : Fragment(R.layout.fragment_play_game), View.OnClickList
     private val scoreViewModel: ScoreViewModel by viewModels()
     private var binding: FragmentPlayGameBinding? = null
     private val TAG = "kienda"
+    private var optionA: Unit? = null
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -51,7 +55,6 @@ class PlayGameFragment : Fragment(R.layout.fragment_play_game), View.OnClickList
             setDataForQuestion()
             binding?.refresh?.isRefreshing = false
         }
-
     }
 
     private fun checkTheCorrectAnswer(correctAnswer: Int) {
@@ -246,7 +249,9 @@ class PlayGameFragment : Fragment(R.layout.fragment_play_game), View.OnClickList
                 it
             )
         })
+
     }
+
 
     private fun checkForOptionB() {
         questionViewModel.getMQuestion().observe(requireActivity(), {
@@ -300,9 +305,6 @@ class PlayGameFragment : Fragment(R.layout.fragment_play_game), View.OnClickList
 
 
     override fun onDestroy() {
-        questionViewModel.getMQuestion().observe(requireActivity(), {
-            questionViewModel.checkForOptionA(it).cancel("kienda")
-        })
         super.onDestroy()
     }
 

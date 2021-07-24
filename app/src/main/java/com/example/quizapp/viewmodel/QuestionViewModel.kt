@@ -39,9 +39,7 @@ class QuestionViewModel @ViewModelInject constructor(
 
     fun getMQuestion(): LiveData<List<Question>> = mQuestions
 
-
     fun getQuestionStatus(): MutableLiveData<QuestionStatus> = questionStatus
-
 
     fun getScore(): Int = score
 
@@ -51,6 +49,7 @@ class QuestionViewModel @ViewModelInject constructor(
     fun checkForOptionA(
         mQuestions: List<Question>,
     ) = viewModelScope.launch(Dispatchers.Main) {
+
         val result: Int = mQuestions[position].result
         if (Const.OPTION_A === result) {
             questionStatus.postValue(QuestionStatus.CORRECT_ANSWER)
@@ -73,11 +72,13 @@ class QuestionViewModel @ViewModelInject constructor(
             )
             questionStatus.postValue(QuestionStatus.YOU_LOSSE)
         }
+
     }
 
     fun checkForOptionB(
         mQuestions: List<Question>,
     ) = viewModelScope.launch(Dispatchers.Main) {
+
         try {
             val result: Int = mQuestions[position].result
             if (Const.OPTION_B === result) {
@@ -104,6 +105,7 @@ class QuestionViewModel @ViewModelInject constructor(
         } catch (e: Exception) {
             Log.d("kienda", "checkForOptionB: $e")
         }
+
     }
 
 
@@ -137,6 +139,7 @@ class QuestionViewModel @ViewModelInject constructor(
     fun checkForOptionD(
         mQuestions: List<Question>,
     ) = viewModelScope.launch(Dispatchers.Main) {
+
         val result: Int = mQuestions[position].result
         if (Const.OPTION_D === result) {
             questionStatus.postValue(QuestionStatus.CORRECT_ANSWER)
@@ -159,6 +162,7 @@ class QuestionViewModel @ViewModelInject constructor(
             )
             questionStatus.postValue(QuestionStatus.YOU_LOSSE)
         }
+
     }
 
 

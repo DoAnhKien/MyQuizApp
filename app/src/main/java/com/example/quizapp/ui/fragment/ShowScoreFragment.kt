@@ -47,6 +47,7 @@ class ShowScoreFragment : Fragment(R.layout.fragment_show_score), MyScoreClicked
 
             ItemTouchHelper(object :
                 ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+
                 override fun onMove(
                     recyclerView: RecyclerView,
                     viewHolder: RecyclerView.ViewHolder,

@@ -47,9 +47,8 @@ class ScoreAdapter(private val onMyScoreClicked: MyScoreClicked) :
 
 
         fun bind(mScore: Score) {
-            binding.apply {
-                tvCurrentScore.text = mScore.score.toString()
-            }
+            binding.score = mScore
+            binding.executePendingBindings()
         }
     }
 
